@@ -1,0 +1,63 @@
+﻿<Window x:Class="GestorTareasApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestorTareasApp"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Gestor de Tareas - Ejemplo WPF" Height="380" Width="480">
+    <!-- Panel contenedor principal: DockPanel para acoplar elementos a los bordes -->
+    <DockPanel Margin="15">
+
+        <!-- Encabezado superior -->
+        <TextBlock DockPanel.Dock="Top" 
+                   Text="Mi Lista de Tareas WPF" 
+                   FontSize="20" 
+                   FontWeight="Bold" 
+                   Foreground="#0073E6"
+                   Margin="0,0,0,15" 
+                   HorizontalAlignment="Center"/>
+
+        <!-- Barra inferior para añadir nuevas tareas -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,15,0,0">
+            <TextBox x:Name="TxtNuevaTarea" 
+                     Width="310" 
+                     Margin="0,0,10,0" 
+                     Padding="5"
+                     VerticalContentAlignment="Center"
+                     ToolTip="Escribe una nueva tarea aquí"/>
+
+            <!-- Suscripción al evento Click -->
+            <Button x:Name="BtnAgregar" 
+                    Content="Añadir" 
+                    Width="100"
+                    Padding="5" 
+                    Background="#0073E6"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Click="BtnAgregar_Click"/>
+        </StackPanel>
+
+        <!-- Área central: ListBox con plantilla personalizada (DataTemplate) -->
+        <Grid>
+            <ListBox x:Name="LstTareas" ItemsSource="{Binding Tareas}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <!-- Enlace bidireccional de la propiedad Completada -->
+                            <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" 
+                                      VerticalAlignment="Center" 
+                                      Margin="0,0,10,0"/>
+
+                            <TextBlock Text="{Binding Titulo}" 
+                                       VerticalAlignment="Center"
+                                       FontSize="14"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+    </DockPanel>
+</Window>
