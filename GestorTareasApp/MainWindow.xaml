@@ -13,7 +13,7 @@
         <!-- Encabezado superior -->
         <TextBlock DockPanel.Dock="Top" 
                    Text="Mi Lista de Tareas WPF" 
-                   FontSize="20" 
+                   FontSize="25" 
                    FontWeight="Bold" 
                    Foreground="#0073E6"
                    Margin="0,0,0,15" 
@@ -33,20 +33,24 @@
                     Content="Añadir" 
                     Width="100"
                     Padding="5" 
-                    Background="#0073E6"
+                    Background="Black"
                     Foreground="White"
                     FontWeight="Bold"
                     Click="BtnAgregar_Click"/>
         </StackPanel>
 
         <!-- Área central: ListBox con plantilla personalizada (DataTemplate) -->
+        <!--
+            ListBox está enlazado Tasks = new ObservableCollection<Tarea> 
+            ItemsSource="{Binding Tasks}
+        -->
         <Grid>
-            <ListBox x:Name="LstTareas" ItemsSource="{Binding Tareas}">
+            <ListBox x:Name="LstTareas" ItemsSource="{Binding Tasks}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <!-- Enlace bidireccional de la propiedad Completada -->
-                            <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" 
+                            <RadioButton IsChecked="{Binding Completada, Mode=TwoWay}" 
                                       VerticalAlignment="Center" 
                                       Margin="0,0,10,0"/>
 

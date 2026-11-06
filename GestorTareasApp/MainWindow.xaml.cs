@@ -17,12 +17,14 @@ namespace GestorTareasApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Tarea> Tareas { get; set; }
+        //ObservableCollection es una colección de datos dinámica que proporciona notifacaciones cuando se modifica
+
+        public ObservableCollection<Tarea> Tasks { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             // Datos iniciales de ejemplo
-            Tareas = new ObservableCollection<Tarea>
+            Tasks = new ObservableCollection<Tarea>
             {
                 new Tarea { Titulo = "Aprender sintaxis de XAML", Completada = true },
                 new Tarea { Titulo = "Comprender la separación Vista / Código", Completada = true },
@@ -37,7 +39,7 @@ namespace GestorTareasApp
             if (!string.IsNullOrWhiteSpace(TxtNuevaTarea.Text))
             {
                 // Se añade la nueva tarea a la colección observada
-                Tareas.Add(new Tarea
+                Tasks.Add(new Tarea
                 {
                     Titulo = TxtNuevaTarea.Text,
                     Completada = false
